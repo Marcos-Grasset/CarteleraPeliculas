@@ -1,0 +1,382 @@
+body {
+  background-color: #061222;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  animation: animatedBackground 20s ease-in-out infinite;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: linear-gradient(45deg, #36002c, #000000, #360f30);
+  background-size: 300% 300%;
+  animation: headerAnimation 5s ease-in-out infinite;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  min-height: 200px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 7px solid #320034;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes headerAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+h1 {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.header-img {
+  max-width: 100%;
+  height: auto;
+  max-height: 200px;
+}
+
+main {
+  background-image: url("../images/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+h2 {
+  color: white;
+  font-style: italic;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#generos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenido {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 20px;
+}
+
+#ranking,
+#video {
+  flex: 0 0 35%;
+}
+
+#video {
+  overflow: hidden;
+  margin-top: 65px;
+  width: 100%;
+  max-width: 800px;
+}
+
+#video iframe {
+  width: 100%;
+  height: 440px;
+  border-radius: 5px;
+  border-top: 50px solid black;
+  border-bottom: 50px solid black;
+  border-left: none;
+  border-right: none;
+}
+
+#ranking h2,
+#video h2 {
+  text-align: center;
+}
+
+.genero {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.gif-header {
+  width: 300px;
+  height: auto;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.pelicula {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 15px;
+  transition: transform 0.5s;
+}
+
+.pelicula:last-child {
+  margin-right: 0;
+}
+
+.pelicula img {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.pelicula p {
+  margin: 0;
+  font-size: 16px;
+  color: white;
+  font-style: italic;
+}
+
+.pelicula button {
+  background-color: #18acda;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pelicula button:hover {
+  background-color: #59d3f8;
+}
+
+#ranking {
+  margin-top: 30px;
+}
+
+#ranking-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#ranking-list li {
+  background-color: #a522fc;
+  color: white;
+  font-style: italic;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#main_reseña {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../images/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+}
+
+.estrellas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 20px 0;
+}
+
+.estrella {
+  font-size: 50px;
+}
+
+.estrella.seleccionada {
+  color: gold;
+}
+
+.estrella:hover {
+  color: gold;
+  cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  max-width: 600px;
+  height: 150px;
+  border-radius: 5px;
+  background-color: #a522fc;
+  color: white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+textarea::placeholder {
+  color: #cbc9c9;
+  opacity: 1;
+}
+
+button#guardar-reseña {
+  background-color: #008ccc;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin: 20px auto;
+}
+
+button#guardar-reseña:hover {
+  background-color: #18acda;
+}
+
+.editar-btn {
+  background-color: #18acda;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.eliminar-btn {
+  background-color: #ff4c4c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.eliminar-btn:hover {
+  background-color: #ff7a7a;
+}
+
+footer {
+  background-color: #000;
+  color: white;
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: calc(200px * 5);
+}
+
+.pelicula {
+  min-width: 200px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.pelicula:hover {
+  transform: rotateY(10deg);
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  z-index: 100;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    height: 100px;
+  }
+
+  header h1 {
+    font-size: 20px;
+    line-height: 100px;
+  }
+
+  .contenido {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #ranking,
+  #video {
+    width: 90%;
+  }
+}

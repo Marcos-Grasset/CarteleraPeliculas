@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartelera de Peliculas</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="./images/icono.JPG" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <img
+          src="images/cartelera.gif"
+          alt="Descripción de la imagen"
+          class="header-img"
+        />
+      </h1>
+    </header>
+
+    <main>
+      <section id="generos">
+        <h2>
+          <img
+            src="./images/Estrenos.gif"
+            alt="Gif de estrenos"
+            class="gif-header"
+          />
+        </h2>
+
+        <div class="carousel-container">
+          <button class="prev" onclick="moverCarousel(-1)">&#10094;</button>
+
+          <div class="carousel">
+            <div class="pelicula">
+              <img src="images/guason.jpg" alt="Guason 2 Folie a Deux" />
+              <p>Guason 2 Folie a Deux</p>
+              <button onclick="irAReseña('Guason 2 Folie a Deux')">
+                Reseñar
+              </button>
+            </div>
+            <div class="pelicula">
+              <img src="images/transformers.jpg" alt="Transformers UNO" />
+              <p>Transformers UNO</p>
+              <button onclick="irAReseña('Transformers UNO')">Reseñar</button>
+            </div>
+            <div class="pelicula">
+              <img src="images/alien.jpg" alt="Alien Romulus" />
+              <p>Alien Romulus</p>
+              <button onclick="irAReseña('Alien Romulus')">Reseñar</button>
+            </div>
+            <div class="pelicula">
+              <img src="images/beetlejuice.jpg" alt="Beetlejuice" />
+              <p>Beetlejuice</p>
+              <button onclick="irAReseña('Beetlejuice')">Reseñar</button>
+            </div>
+            <div class="pelicula">
+              <img src="images/intensamente.jpeg" alt="Intensa Mente 2" />
+              <p>Intensa Mente 2</p>
+              <button onclick="irAReseña('Intensa Mente 2')">Reseñar</button>
+            </div>
+            <div class="pelicula">
+              <img src="images/sonrie.jpeg" alt="Sonríe 2" />
+              <p>Sonríe 2</p>
+              <button onclick="irAReseña('Sonríe 2')">Reseñar</button>
+            </div>
+            <div class="pelicula">
+              <img src="images/deadpool.jpg" alt="Deadpool & Wolverine" />
+              <p>Deadpool & Wolverine</p>
+              <button onclick="irAReseña('Deadpool & Wolverine')">
+                Reseñar
+              </button>
+            </div>
+            <div class="pelicula">
+              <img src="images/alice.jpg" alt="Alice" />
+              <p>Alice</p>
+              <button onclick="irAReseña('Alice')">Reseñar</button>
+            </div>
+            <div class="pelicula">
+              <img src="images/carnada.jpg" alt="Carnada" />
+              <p>Carnada</p>
+              <button onclick="irAReseña('Carnada')">Reseñar</button>
+            </div>
+            <div class="pelicula">
+              <img src="images/deep web.jpg" alt="Deep Web" />
+              <p>Deep Web</p>
+              <button onclick="irAReseña('Deep Web')">Reseñar</button>
+            </div>
+            <div class="pelicula">
+              <img src="images/hellboy.jpg" alt="Hellboy" />
+              <p>Hellboy</p>
+              <button onclick="irAReseña('Hellboy')">Reseñar</button>
+            </div>
+            <div class="pelicula">
+              <img
+                src="images/mi villano favorito 4.jpg"
+                alt="Mi Villano Favorito 4"
+              />
+              <p>Mi Villano Favorito 4</p>
+              <button onclick="irAReseña('Mi Villano Favorito 4')">
+                Reseñar
+              </button>
+            </div>
+          </div>
+
+          <button class="next" onclick="moverCarousel(1)">&#10095;</button>
+        </div>
+      </section>
+
+      <div class="contenido">
+        <section id="ranking">
+          <h2>
+            <img
+              src="./images/Ranking de Películas.gif"
+              alt="Gif de ranking"
+              class="gif-header"
+            />
+          </h2>
+          <ul id="ranking-list"></ul>
+        </section>
+        <section id="video">
+          <h2>
+            <img
+              src="./images/próximamente.gif"
+              alt="Gif de video"
+              class="gif-header"
+            />
+          </h2>
+          <iframe
+            width="560"
+            height="380"
+            src="https://www.youtube.com/embed/z8iYQHFZcv8?si=tPQRgH-18_KiBfqN"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div style="display: flex; align-items: center; justify-content: center">
+        <img
+          src="./images/icono.JPG"
+          alt="Icono"
+          style="width: 30px; height: 20px; margin: 0; padding: 0"
+        />
+        <p style="margin-left: 8px">
+          © 2024 Cartelera de Peliculas - Sitio web creado por Marcos Grasset &
+          Nicolás Ojeda - Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+  
+</html>
