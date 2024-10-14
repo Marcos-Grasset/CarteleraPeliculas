@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartelera de Peliculas</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="icono.JPG" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <img
+          src="cartelera.gif"
+          alt="Descripción de la imagen"
+          class="header-img"
+        />
+      </h1>
+    </header>
+
+    <main>
+      <section id="generos">
+        <h2>
+          <img src="Estrenos.gif" alt="Gif de estrenos" class="gif-header" />
+        </h2>
+        <div class="carousel-container">
+          <button class="prev" onclick="moverCarousel(-1)">&#10094;</button>
+          <div class="carousel"></div>
+          <button class="next" onclick="moverCarousel(1)">&#10095;</button>
+        </div>
+      </section>
+
+      <div class="contenido">
+        <section id="ranking">
+          <h2>
+            <img
+              src="RankingdePeliculas.gif"
+              alt="Gif de ranking"
+              class="gif-header"
+            />
+          </h2>
+          <ul id="ranking-list"></ul>
+        </section>
+
+        <section id="video">
+          <h2>
+            <img src="proximamente.gif" alt="Gif de video" class="gif-header" />
+          </h2>
+          <iframe
+            width="560"
+            height="380"
+            src="https://www.youtube.com/embed/z8iYQHFZcv8?si=tPQRgH-18_KiBfqN"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </section>
+      </div>
+
+      <section id="resena-section" style="text-align: center; margin-top: 20px">
+        <h2>
+          <img
+            src="resenar.gif"
+            alt="Descripción de la imagen"
+            class="header-img"
+          />
+        </h2>
+        <img
+          id="pelicula-imagen"
+          src=""
+          alt="Imagen de la película"
+          style="width: 200px; height: auto"
+        />
+        <h3 id="pelicula-nombre"></h3>
+        <div id="estrellas"></div>
+        <textarea
+          id="comentario"
+          placeholder="Escribe tu comentario aquí"
+          style="width: 80%; margin-top: 10px"
+        ></textarea>
+        <br />
+        <button id="guardar-reseña" style="margin-top: 10px">
+          Guardar Reseña
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <div style="display: flex; align-items: center; justify-content: center">
+        <img
+          src="icono.JPG"
+          alt="Icono"
+          style="width: 30px; height: 20px; margin: 0; padding: 0"
+        />
+        <p style="margin-left: 8px">
+          © 2024 Cartelera de Peliculas - Sitio web creado por Marcos Grasset &
+          Nicolás Ojeda - Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const peliculas = {
+        "Guason 2 Folie a Deux": "guason.jpg",
+        "Transformers UNO": "transformers.jpg",
+        "Alien Romulus": "alien.jpg",
+        Beetlejuice: "beetlejuice.jpg",
+        "Intensa Mente 2": "intensamente.jpeg",
+        "Sonríe 2": "sonrie.jpeg",
+        "Deadpool & Wolverine": "deadpool.jpg",
+        Alice: "alice.jpg",
+        Carnada: "carnada.jpg",
+        "Deep Web": "deepweb.jpg",
+        Hellboy: "hellboy.jpg",
+        "Mi Villano Favorito 4": "mivillanofavorito4.jpg",
+      };
+
+      function irAReseña(pelicula) {
+        const peliculaData = {
+          nombre: pelicula,
+          imagen: peliculas[pelicula],
+        };
+        mostrarSeccionResena(peliculaData);
+
+        document
+          .getElementById("resena-section")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+
+      function mostrarSeccionResena(peliculaData) {
+        document.getElementById("pelicula-imagen").src = peliculaData.imagen;
+        document.getElementById("pelicula-nombre").textContent =
+          peliculaData.nombre;
+
+        const estrellasDiv = document.getElementById("estrellas");
+        estrellasDiv.innerHTML = "";
+
+        for (let i = 1; i <= 5; i++) {
+          const estrella = document.createElement("span");
+          estrella.textContent = "★";
+          estrella.classList.add("estrella");
+          estrella.dataset.valor = i;
+          estrella.onclick = function () {
+            seleccionarPuntuacion(i);
+          };
+          estrellasDiv.appendChild(estrella);
+        }
+
+        let puntuacionSeleccionada = 0;
+
+        function seleccionarPuntuacion(valor) {
+          puntuacionSeleccionada = valor;
+          const estrellas = document.querySelectorAll(".estrella");
+          estrellas.forEach((estrella) => {
+            estrella.style.color =
+              estrella.dataset.valor <= valor ? "gold" : "black";
+          });
+        }
+
+        document.getElementById("guardar-reseña").onclick = () => {
+          const comentario = document.getElementById("comentario").value;
+          if (comentario && puntuacionSeleccionada > 0) {
+            const nuevaReseña = {
+              pelicula: peliculaData.nombre,
+              comentario: comentario,
+              estrellas: puntuacionSeleccionada,
+            };
+            guardarResena(nuevaReseña);
+            alert("Reseña guardada");
+            document.getElementById("comentario").value = "";
+            actualizarRanking();
+          } else {
+            alert(
+              "Por favor, completa el comentario y selecciona una puntuación."
+            );
+          }
+        };
+      }
+
+      function guardarResena(nuevaReseña) {
+        const reseñas = JSON.parse(localStorage.getItem("reseñas")) || [];
+        reseñas.push(nuevaReseña);
+        localStorage.setItem("reseñas", JSON.stringify(reseñas));
+      }
+
+      function actualizarRanking() {
+        const rankingList = document.getElementById("ranking-list");
+        rankingList.innerHTML = "";
+
+        const reseñas = JSON.parse(localStorage.getItem("reseñas")) || [];
+        const puntuaciones = {};
+
+        reseñas.forEach((reseña) => {
+          if (!puntuaciones[reseña.pelicula]) {
+            puntuaciones[reseña.pelicula] = { total: 0, count: 0 };
+          }
+          puntuaciones[reseña.pelicula].total += reseña.estrellas;
+          puntuaciones[reseña.pelicula].count++;
+        });
+
+        const peliculasOrdenadas = Object.keys(peliculas)
+          .sort(
+            (a, b) =>
+              (puntuaciones[b]?.total || 0) - (puntuaciones[a]?.total || 0)
+          )
+          .slice(0, 10);
+
+        peliculasOrdenadas.forEach((pelicula) => {
+          const li = document.createElement("li");
+          li.textContent = `${pelicula}: `;
+
+          const totalEstrellas = puntuaciones[pelicula]?.total || 0;
+          for (let i = 1; i <= 5; i++) {
+            const estrella = document.createElement("span");
+            estrella.textContent = "★";
+            estrella.style.color = i <= totalEstrellas ? "gold" : "black";
+            li.appendChild(estrella);
+          }
+
+          const editarBtn = document.createElement("button");
+          editarBtn.textContent = "Editar";
+          editarBtn.classList.add("editar-btn");
+          editarBtn.onclick = () => editarReseña(pelicula);
+
+          const eliminarBtn = document.createElement("button");
+          eliminarBtn.textContent = "Eliminar";
+          eliminarBtn.classList.add("eliminar-btn");
+          eliminarBtn.onclick = () => eliminarReseña(pelicula);
+
+          li.appendChild(editarBtn);
+          li.appendChild(eliminarBtn);
+
+          rankingList.appendChild(li);
+        });
+      }
+
+      function editarReseña(pelicula) {
+        const reseñas = JSON.parse(localStorage.getItem("reseñas")) || [];
+        const reseña = reseñas.find((r) => r.pelicula === pelicula);
+        if (reseña) {
+          const nuevoComentario = prompt(
+            "Editar comentario:",
+            reseña.comentario
+          );
+          const nuevasEstrellas = prompt(
+            "Editar estrellas (1-5):",
+            reseña.estrellas
+          );
+
+          if (nuevoComentario && nuevasEstrellas >= 1 && nuevasEstrellas <= 5) {
+            reseña.comentario = nuevoComentario;
+            reseña.estrellas = parseInt(nuevasEstrellas);
+
+            localStorage.setItem("reseñas", JSON.stringify(reseñas));
+            alert("Reseña actualizada");
+            actualizarRanking();
+          } else {
+            alert(
+              "Número inválido. Asegúrate de ingresar una puntuación entre 1 y 5."
+            );
+          }
+        } else {
+          alert("Reseña no encontrada");
+        }
+      }
+
+      function eliminarReseña(pelicula) {
+        let reseñas = JSON.parse(localStorage.getItem("reseñas")) || [];
+        reseñas = reseñas.filter((reseña) => reseña.pelicula !== pelicula);
+        localStorage.setItem("reseñas", JSON.stringify(reseñas));
+        alert("Reseña eliminada");
+        actualizarRanking();
+      }
+
+      let currentIndex = 0;
+      const peliculasKeys = Object.keys(peliculas);
+      const carouselContainer = document.querySelector(".carousel");
+      const peliculasVisibles = 5;
+
+      function mostrarPeliculas() {
+        carouselContainer.innerHTML = "";
+
+        for (let i = currentIndex; i < currentIndex + peliculasVisibles; i++) {
+          const peliculaKey = peliculasKeys[i % peliculasKeys.length];
+          const peliculaImg = peliculas[peliculaKey];
+
+          const peliculaDiv = document.createElement("div");
+          peliculaDiv.classList.add("pelicula");
+
+          const img = document.createElement("img");
+          img.src = peliculaImg;
+          img.alt = peliculaKey;
+
+          const p = document.createElement("p");
+          p.textContent = peliculaKey;
+
+          const btn = document.createElement("button");
+          btn.textContent = "Reseñar";
+          btn.onclick = () => irAReseña(peliculaKey);
+
+          peliculaDiv.appendChild(img);
+          peliculaDiv.appendChild(p);
+          peliculaDiv.appendChild(btn);
+          carouselContainer.appendChild(peliculaDiv);
+        }
+      }
+
+      function moverCarousel(direction) {
+        currentIndex =
+          (currentIndex + direction + peliculasKeys.length) %
+          peliculasKeys.length;
+        mostrarPeliculas();
+      }
+
+      mostrarPeliculas();
+      actualizarRanking();
+    </script>
+  </body>
+</html>
